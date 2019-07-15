@@ -1,19 +1,22 @@
 {
   "type": "word_segment",
-  "gpu_device": 0,
-  "load_model": "./tmp/sejong_cnn_spacing_epoch_50_batch_128_len_100/model/checkpoint/checkpoint_100000_model.pkl",
+  "gpu_device": -1,
+  "load_model": null,
+  "last_train_steps": null,
   "dataset": {
-    "name": "wiki_kor_raw",
+    "name": "default_spacing",
     "train": {
+      "bi_tags_only": false,
       "vocab_min_freq": 10,
-      "input": "./corpus/sejong_raw/train.txt"
+      "input": "./data/test.txt"
     },
     "test": {
-      "input": "./corpus/sejong_raw/test.txt"
+      "limit_len": 150,
+      "input": "./data/test.txt"
     }
   },
   "deploy": {
-    "path": "./tmp/sejong_cnn_spacing_epoch_50_batch_128_len_100"
+    "path": "./tmp/cnn_bilstm_spacing"
   },
   "model": {
     "type": "cnn_bilstm_crf",
@@ -41,10 +44,10 @@
     }
   },
   "train": {
-    "epochs": 50,
-    "eval_steps": 5000,
-    "eval_batch_size": 512,
-    "batch_size": 128,
+    "epochs": 5,
+    "eval_steps": 10,
+    "eval_batch_size": 1,
+    "batch_size": 8,
     "sequence_length": 100
   }
 }

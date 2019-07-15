@@ -5,7 +5,7 @@
   "load_model": null,
   "tokenizer": "syllable_tokenizer",
   "dataset": {
-    "name": "sejong_spacing",
+    "name": "default_spacing",
     "train": {
       "bi_tags_only": false,
       "vocab_min_freq": 10,
@@ -17,7 +17,7 @@
     }
   },
   "deploy": {
-    "path": "./tmp/sejong_all_spacing_epoch_50,batch_128_len_100"
+    "path": "./tmp/bilstm_spacing"
   },
   "model": {
     "type": "bilstm_crf",
@@ -27,7 +27,7 @@
     }
   },
   "train": {
-    "epochs": 50,
+    "epochs": 5,
     "eval_steps": 10,
     "eval_batch_size": 1,
     "batch_size": 8,
