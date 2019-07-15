@@ -96,7 +96,7 @@ class WordSegmentModelEvaluator(object):
     def summary(self):
         table = PrettyTable(['Name', 'Score'])
         table.add_row(['WER score', "{:.4f}".format(self._wer_score)])
-        table.add_row(['SER score', "{:.4f}".format(self._corrected_sent_cnt)])
+        table.add_row(['SER score', "{:.4f}".format(1. - self._corrected_sent_cnt)])
         table.add_row(['F1 score', "{:.4f}".format(self._f1_score)])
         table.add_row(['ACC score', "{:.4f}".format(self._acc_score)])
 

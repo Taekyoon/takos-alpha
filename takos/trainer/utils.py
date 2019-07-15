@@ -27,7 +27,7 @@ def create_trainer(type, model, data_builder, train_configs, gpu_device=-1, depl
                                               model,
                                               train_configs['epochs'],
                                               train_configs['eval_steps'],
-                                              learning_rate=learning_rate,
+                                              learning_rate=train_configs['learning_rate'],
                                               deploy_path=deploy_path,
                                               gpu_device=gpu_device,
                                               eval_labels=tag_inidices)

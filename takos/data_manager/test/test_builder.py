@@ -1,5 +1,5 @@
 from pathlib import Path
-from takos.data_manager.builder import NERDatasetBuilder
+from takos.data_manager.builder import TagSequenceDatasetBuilder
 from torch.utils.data import DataLoader
 
 
@@ -12,7 +12,7 @@ def test_ner_dataset_builder_build_dataloader_as_default():
     batch_size = 2
     sequence_length = 10
 
-    ner_builder = NERDatasetBuilder(input_path, label_path, dataset_dir=dataset_dir)
+    ner_builder = TagSequenceDatasetBuilder(input_path, label_path, dataset_dir=dataset_dir)
 
     ner_builder.build_vocabulary()
     ner_builder.build_trainable_dataset()
@@ -31,7 +31,7 @@ def test_ner_dataset_test_lodaer_iterate():
     batch_size = 2
     sequence_length = 10
 
-    ner_builder = NERDatasetBuilder(input_path, label_path, dataset_dir=dataset_dir)
+    ner_builder = TagSequenceDatasetBuilder(input_path, label_path, dataset_dir=dataset_dir)
 
     ner_builder.build_vocabulary()
     ner_builder.build_trainable_dataset()
@@ -55,7 +55,7 @@ def test_ner_dataset_valid_lodaer_iterate():
     batch_size = 2
     sequence_length = 10
 
-    ner_builder = NERDatasetBuilder(input_path, label_path, dataset_dir=dataset_dir)
+    ner_builder = TagSequenceDatasetBuilder(input_path, label_path, dataset_dir=dataset_dir)
 
     ner_builder.build_vocabulary()
     ner_builder.build_trainable_dataset()

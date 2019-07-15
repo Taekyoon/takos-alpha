@@ -1,5 +1,5 @@
 from pathlib import Path
-from takos.data_manager.builder import NERDatasetBuilder
+from takos.data_manager.builder import TagSequenceDatasetBuilder
 from takos.model import BilstmCRF
 from takos.trainer import SequenceTaggingModelTrainer
 
@@ -18,7 +18,7 @@ def test_model_train_with_train_data():
     batch_size = 2
     sequence_length = 15
 
-    ner_builder = NERDatasetBuilder(input_path, label_path, dataset_dir=deploy_dir / 'dataset')
+    ner_builder = TagSequenceDatasetBuilder(input_path, label_path, dataset_dir=deploy_dir / 'dataset')
 
     ner_builder.build_vocabulary()
     ner_builder.build_trainable_dataset()

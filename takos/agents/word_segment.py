@@ -27,7 +27,7 @@ logger = logging.getLogger(__name__)
 logger.setLevel(logging.INFO)
 
 
-class NERExplainerGenerator(object):
+class ExplainerGenerator(object):
     def __init__(self, model, word2idx, max_len):
         self.model = model
         self.word2idx = word2idx
@@ -71,6 +71,7 @@ class WordSegmentAgent(Agent):
         self.deploy_path = Path(self.configs['deploy']['path'])
         self.model_configs = self.configs['model']
         self.best_model_path = self.deploy_path / 'model' / 'best_val.pkl'
+        self.model_trained = False
 
         if self.tokenizer_type == 'syllable_tokenizer':
             tokenizer = SyllableTokenizer()
@@ -90,8 +91,11 @@ class WordSegmentAgent(Agent):
             tag_vocab = vocabs['label_vocab']
 
         model = create_model(self.task_type, tag_vocab, self.model_configs)
+
         if os.path.exists(self.best_model_path):
             model = load_model(self.best_model_path, model)
+        else:
+            logger.info('no best model')
         model.eval()
 
         self.tokenizer = tokenizer
@@ -134,24 +138,23 @@ class WordSegmentAgent(Agent):
         if data_builder.word_to_idx:
             self.model_configs['vocab_size'] = len(data_builder.word_to_idx)
 
-        if data_builder.tag_to_idx:
-            tag_to_idx = data_builder.tag_to_idx
+        if self.model_trained:
+            if 'load_model' in self.configs:
+                logger.info('load model: {}'.format(self.configs['load_model']))
+                if 'load_model_strict' in self.configs:
+                    strict = self.configs['load_model_strict']
+                else:
+                    strict = False
+                logger.info('set load model as strict method: {}'.format(strict))
+                if self.configs['load_model'] is not None:
+                    self.model = load_model(self.configs['load_model'], self.model, strict=strict)
 
-        model = create_model(self.task_type, tag_to_idx, self.model_configs)
-        if 'load_model' in self.configs:
-            logger.info('load model: {}'.format(self.configs['load_model']))
-            if 'load_model_strict' in self.configs:
-                strict = self.configs['load_model_strict']
-            else:
-                strict = False
-            logger.info('set load model as strict method: {}'.format(strict))
-            if 'load_model' in self.configs and self.configs['load_model'] is not None:
-                model = load_model(self.configs['load_model'], model, strict=strict)
-        trainer = create_trainer(self.task_type, model, data_builder, train_configs,
+        trainer = create_trainer(self.task_type, self.model, data_builder, train_configs,
                                  gpu_device=gpu_device, deploy_path=self.deploy_path / 'model')
 
-        logger.info(model)
+        logger.info(self.model)
         trainer.train()
+        self.model_trained = True
 
     def eval(self):
         test_dataset_configs = self.configs['dataset']['test'] if 'test' in self.configs['dataset'] else None
@@ -172,7 +175,7 @@ class WordSegmentAgent(Agent):
         label = self.label.word_to_idx
         prepro_query = self.preprocess(query)
 
-        explainer_generator = NERExplainerGenerator(model, vocab, max_len)
+        explainer_generator = ExplainerGenerator(model, vocab, max_len)
 
         sampler = MaskingTextSampler(
             replacement=UNK,

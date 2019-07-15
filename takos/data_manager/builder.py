@@ -72,7 +72,7 @@ class DatasetBuilder(object):
         make_dir_if_not_exist(self._dataset_dir)
 
 
-class NERDatasetBuilder(DatasetBuilder):
+class TagSequenceDatasetBuilder(DatasetBuilder):
     def __init__(self,
                  input_path: Path,
                  label_path: Path,
@@ -245,7 +245,7 @@ class NERDatasetBuilder(DatasetBuilder):
         return (input_train, label_train), (input_test, label_test)
 
 
-class WordSegmentationDatasetBuilder(NERDatasetBuilder):
+class WordSegmentationDatasetBuilder(TagSequenceDatasetBuilder):
     def __init__(self,
                  input_path: Path,
                  file_type: str = 'text',
@@ -256,6 +256,7 @@ class WordSegmentationDatasetBuilder(NERDatasetBuilder):
 
         self._dataset_dir = dataset_dir
         self._has_resource = False
+        self._no_train_resource = False
 
         if input_vocab is not None:
             logger.info('use existing input vocabulary.')

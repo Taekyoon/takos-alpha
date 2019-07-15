@@ -1,19 +1,17 @@
 {
   "type": "word_segment",
   "gpu_device": -1,
-  "last_train_steps": null,
   "load_model": null,
   "tokenizer": "syllable_tokenizer",
   "dataset": {
-    "name": "default_spacing",
+    "name": "your_dataset",
     "train": {
-      "bi_tags_only": false,
       "vocab_min_freq": 10,
-      "input": "./data/test.txt"
+      "input": "./samples/train.txt"
     },
     "test": {
       "limit_len": 150,
-      "input": "./data/test.txt"
+      "input": "./samples/test.txt"
     }
   },
   "deploy": {
@@ -27,10 +25,11 @@
     }
   },
   "train": {
-    "epochs": 5,
-    "eval_steps": 10,
-    "eval_batch_size": 1,
-    "batch_size": 8,
-    "sequence_length": 100
+    "epochs": 100,
+    "eval_steps": -1,
+    "learning_rate": 3e-4,
+    "eval_batch_size": 10,
+    "batch_size": 64,
+    "sequence_length": 50
   }
 }
