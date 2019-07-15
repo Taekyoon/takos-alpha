@@ -8,3 +8,6 @@ tmp
 *.pkl
 data
 corpus
+build
+dist
+takos.egg-info
