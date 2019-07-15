@@ -90,7 +90,7 @@ spacing_agent.eval()
 |    Name   | Score  |
 +-----------+--------+
 | WER score | 0.4896 |
-| SER score | 0.1800 |
+| SER score | 0.8200 |
 |  F1 score | 0.8925 |
 | ACC score | 0.8950 |
 +-----------+--------+
