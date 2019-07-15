@@ -64,8 +64,6 @@ class WordSegmentModelEvaluator(object):
                 _, tag_seq = self._model(input_batch)
                 labeled_tag_seq = self._tag_vocab.to_tokens(tag_seq[0].tolist())
                 pred_text = segment_word_by_tags(unspaced_text, labeled_tag_seq)
-                # print('org: ', text.strip())
-                # print('prd: ', pred_text.strip())
                 wer_score += jiwer.wer(text.strip(), pred_text.strip())
                 if text.split() == pred_text.split():
                     corrected_sent_cnt += 1
@@ -98,8 +96,8 @@ class WordSegmentModelEvaluator(object):
     def summary(self):
         table = PrettyTable(['Name', 'Score'])
         table.add_row(['WER score', "{:.4f}".format(self._wer_score)])
-        table.add_row(['correct sentence rate', "{:.4f}".format(self._corrected_sent_cnt)])
-        table.add_row(['f1 score', "{:.4f}".format(self._f1_score)])
-        table.add_row(['acc score', "{:.4f}".format(self._acc_score)])
+        table.add_row(['SER score', "{:.4f}".format(self._corrected_sent_cnt)])
+        table.add_row(['F1 score', "{:.4f}".format(self._f1_score)])
+        table.add_row(['ACC score', "{:.4f}".format(self._acc_score)])
 
         return table

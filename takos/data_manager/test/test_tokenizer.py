@@ -1,4 +1,4 @@
-from takos.data_manager import SyllableTokenizer, KomoranTokenizer, MecabTokenizer
+from takos.data_manager.tokenizer import SyllableTokenizer, KomoranTokenizer, MecabTokenizer
 
 
 def test_eunjeol_tokenizer():

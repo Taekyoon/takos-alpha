@@ -1,6 +1,6 @@
 import numpy as np
 
-from takos.data_manager import pad_sequences
+from takos.data_manager.dataset import pad_sequences
 
 
 def test_pad_sequences_without_pad_val():
