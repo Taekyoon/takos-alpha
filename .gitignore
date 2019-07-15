@@ -1,0 +1,10 @@
+.idea
+__pycache__
+*.pyc
+.pytest_cache
+tmp
+.DS_Store
+.cache
+*.pkl
+data
+corpus

@@ -1,0 +1,13 @@
+torch
+numpy
+pandas
+tqdm
+sklearn
+tb-nightly
+future
+Pillow
+prettytable
+jiwer
+flask
+pytorch-pretrained-bert
+eli5

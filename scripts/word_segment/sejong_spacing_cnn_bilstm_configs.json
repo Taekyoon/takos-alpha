@@ -1,0 +1,50 @@
+{
+  "type": "word_segment",
+  "gpu_device": 0,
+  "load_model": "./tmp/sejong_cnn_spacing_epoch_50_batch_128_len_100/model/checkpoint/checkpoint_100000_model.pkl",
+  "dataset": {
+    "name": "wiki_kor_raw",
+    "train": {
+      "vocab_min_freq": 10,
+      "input": "./corpus/sejong_raw/train.txt"
+    },
+    "test": {
+      "input": "./corpus/sejong_raw/test.txt"
+    }
+  },
+  "deploy": {
+    "path": "./tmp/sejong_cnn_spacing_epoch_50_batch_128_len_100"
+  },
+  "model": {
+    "type": "cnn_bilstm_crf",
+    "parameters": {
+      "word_embedding_dims": 32,
+      "channel_dims": 32,
+      "conv_configs": [
+        {
+          "channel_size": 32,
+          "kernel_size": 3,
+          "padding": 1
+        },
+        {
+          "channel_size": 32,
+          "kernel_size": 5,
+          "padding": 2
+        },
+        {
+          "channel_size": 32,
+          "kernel_size": 7,
+          "padding": 3
+        }
+      ],
+      "hidden_dims": 64
+    }
+  },
+  "train": {
+    "epochs": 50,
+    "eval_steps": 5000,
+    "eval_batch_size": 512,
+    "batch_size": 128,
+    "sequence_length": 100
+  }
+}

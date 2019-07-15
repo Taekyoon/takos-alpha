@@ -1,0 +1,34 @@
+{
+  "type": "word_segment",
+  "gpu_device": 0,
+  "tokenizer": "syllable_tokenizer",
+  "load_model_strict": false,
+  "dataset": {
+    "name": "sejong_spacing",
+    "train": {
+      "vocab_path": "./corpus/bert_vocab.json",
+      "input": "./corpus/sejong_raw/train.txt"
+    },
+    "test": {
+      "limit_len": 150,
+      "input": "./corpus/sejong_raw/test.txt"
+    }
+  },
+  "deploy": {
+    "path": "./tmp/sejong_bert_3_spacing_batch_92_len_200"
+  },
+  "model": {
+    "type": "bert",
+    "parameters": {
+      "config_path": "./scripts/models/bert_config_3.json"
+    }
+  },
+  "train": {
+    "learning_rate": 3e-5,
+    "epochs": 20,
+    "eval_steps": 5000,
+    "eval_batch_size": 64,
+    "batch_size": 92,
+    "sequence_length": 200
+  }
+}
