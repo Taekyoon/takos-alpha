@@ -41,7 +41,7 @@ def test_unknown_token_to_index():
 
 
 def test_vocab_obj_as_json():
-    json_path = Path('data/test/test_dataset/vocab_test.json')
+    json_path = Path('./takos/data_manager/test/test_dataset/vocab_test.json')
 
     dummy_inputs = [['나는', '한국에', '살고', '있어요'],
                     ['한국에', '사는건', '쉽지', '않아요'],

@@ -4,10 +4,10 @@ from torch.utils.data import DataLoader
 
 
 def test_ner_dataset_builder_build_dataloader_as_default():
-    input_path = './data_manager/test/test_dataset/ner/input.txt'
-    label_path = './data_manager/test/test_dataset/ner/output.txt'
+    input_path = './takos/data_manager/test/test_dataset/ner/input.txt'
+    label_path = './takos/data_manager/test/test_dataset/ner/output.txt'
 
-    dataset_dir = Path('./data_manager/test/test_dataset/ner/train_dataset')
+    dataset_dir = Path('./takos/data_manager/test/test_dataset/ner/train_dataset')
 
     batch_size = 2
     sequence_length = 10
@@ -23,10 +23,10 @@ def test_ner_dataset_builder_build_dataloader_as_default():
 
 
 def test_ner_dataset_test_lodaer_iterate():
-    input_path = './data_manager/test/test_dataset/ner/input.txt'
-    label_path = './data_manager/test/test_dataset/ner/output.txt'
+    input_path = './takos/data_manager/test/test_dataset/ner/input.txt'
+    label_path = './takos/data_manager/test/test_dataset/ner/output.txt'
 
-    dataset_dir = Path('./data_manager/test/test_dataset/ner/train_dataset')
+    dataset_dir = Path('./takos/data_manager/test/test_dataset/ner/train_dataset')
 
     batch_size = 2
     sequence_length = 10
@@ -47,10 +47,10 @@ def test_ner_dataset_test_lodaer_iterate():
 
 
 def test_ner_dataset_valid_lodaer_iterate():
-    input_path = './data_manager/test/test_dataset/ner/input.txt'
-    label_path = './data_manager/test/test_dataset/ner/output.txt'
+    input_path = './takos/data_manager/test/test_dataset/ner/input.txt'
+    label_path = './takos/data_manager/test/test_dataset/ner/output.txt'
 
-    dataset_dir = Path('./data_manager/test/test_dataset/ner/train_dataset')
+    dataset_dir = Path('./takos/data_manager/test/test_dataset/ner/train_dataset')
 
     batch_size = 2
     sequence_length = 10

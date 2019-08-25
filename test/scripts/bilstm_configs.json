@@ -1,0 +1,35 @@
+{
+  "type": "word_segment",
+  "gpu_device": -1,
+  "load_model": null,
+  "tokenizer": "syllable_tokenizer",
+  "dataset": {
+    "name": "your_dataset",
+    "train": {
+      "vocab_min_freq": 10,
+      "input": "./samples/train.txt"
+    },
+    "test": {
+      "limit_len": 150,
+      "input": "./samples/test.txt"
+    }
+  },
+  "deploy": {
+    "path": "./tmp/bilstm_spacing"
+  },
+  "model": {
+    "type": "bilstm_crf",
+    "parameters": {
+      "word_embedding_dims": 32,
+      "hidden_dims": 64
+    }
+  },
+  "train": {
+    "epochs": 1,
+    "eval_steps": -1,
+    "learning_rate": 3e-4,
+    "eval_batch_size": 10,
+    "batch_size": 10,
+    "sequence_length": 50
+  }
+}
